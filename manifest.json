@@ -7,20 +7,12 @@
     "default_popup": "hello.html",
     "default_icon": "hello_extensions.png"
   },
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "permissions": [
     "cookies",
     "scripting",
-    "tabs"
-  ],
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "css": [],
-      "js": ["content-script.js"]
-    }
-  ],
-  "web_accessible_resources": [{
-    "resources": ["inject.js"],
-    "matches": ["<all_urls>"]
-  }]
+    "activeTab"
+  ]
 }
