@@ -7,7 +7,7 @@
     "service_worker": "background.js"
   },
   "action": {
-    "default_popup": "hello.html",
+    "default_popup": "/popup/hello.html",
     "default_icon": "hello_extensions.png"
   },
   "host_permissions": [
