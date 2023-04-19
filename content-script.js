@@ -6,7 +6,7 @@ function getCookie(name) {
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-function getPrimaryCart() {
+async function getPrimaryCart() {
     console.log('get primary cart');
 
     return fetch("/api/storefront/carts/", {
@@ -72,12 +72,10 @@ function updateCheckoutMessage(cartId, message) {
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     (async () => {
         if (request.action === "get-primary-cart") {
-            let response = await fetch("/api/storefront/carts/", {
-                "method": "GET"
-            });
+            let response = await getPrimaryCart();
             let json = await response.json();
             
-            // console.log(json);
+            console.log(json);
             sendResponse({json: JSON.stringify(json)});
         }
     })();
