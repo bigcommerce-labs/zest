@@ -19,7 +19,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 currentTab.id,
                 { action: "get-primary-cart" }
             ).then((response) => {
-                console.log(response.msg);
+                console.log(response);
+
+                const tree = jsonview.create(response.json);
+                jsonview.render(tree, document.querySelector('.json-container'));
             })
         });
     });
