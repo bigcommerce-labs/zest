@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', function () {
             ).then((response) => {
                 console.log(response);
 
+                // clear
+                document.querySelector('.json-container').innerHTML = "";
+
                 const tree = jsonview.create(response.json);
                 jsonview.render(tree, document.querySelector('.json-container'));
             })

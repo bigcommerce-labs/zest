@@ -77,7 +77,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
             });
             let json = await response.json();
             
-            console.log(json);
+            // console.log(json);
             sendResponse({json: JSON.stringify(json)});
         }
     })();
