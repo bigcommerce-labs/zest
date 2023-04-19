@@ -1,8 +1,16 @@
 <html>
+  <header>
+    <link rel=stylesheet href=popup.css>
+    <script src="jsonview.js"></script>
+  </header>
   <body>
     <h1>Hello Extensions</h1>
-    <script src="popup.js"></script>
 
+    <div id="response-json" class="json-container"></div>
+   
     <button class="button button-action" id="action-get-primary-cart">Get Primary Cart</button>
+
+    <script src="popup.js"></script>
+    <script src="show-response.js"></script>
   </body>
 </html>
