@@ -1,0 +1,23 @@
+{
+  "name": "chrome-extension-bcapp-demo",
+  "version": "1.0.0",
+  "description": "A chrome extension as a bcapp toolkit, to help debug and test in browser.",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bc-shawnwang/chrome-extension-bcapp-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bc-shawnwang/chrome-extension-bcapp-demo/issues"
+  },
+  "homepage": "https://github.com/bc-shawnwang/chrome-extension-bcapp-demo#readme",
+  "dependencies": {
+    "json-view": "^0.4.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.81.0",
+    "webpack-cli": "^5.0.2"
+  }
+}
