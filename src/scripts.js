@@ -69,7 +69,7 @@ function updateCheckoutMessage(cartId, message) {
     .then(json => console.log(json))
 }
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     (async () => {
         if (request.action === "get-primary-cart") {
             let response = await getPrimaryCart();
@@ -81,4 +81,5 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     })();
     return true;
   });
-  
+
+  console.log('listener added');
