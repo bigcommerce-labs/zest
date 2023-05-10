@@ -1,4 +1,4 @@
-console.log("Hello from your Chrome extension!");
+console.log("Hello from your zest extension!");
 
 import { getPrimaryCart } from './get-cart';
 

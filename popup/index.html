@@ -1,15 +1,15 @@
 <html>
   <header>
     <link rel=stylesheet href="/popup/popup.css">
+    <title><%= htmlWebpackPlugin.options.title %></title>
   </header>
   <body>
-    <h1>BCApp Toolkti</h1>
+    <h1> <%= htmlWebpackPlugin.options.myPageHeader %> </h1>
 
     <div id="response-json" class="json-container"></div>
 
     <div class="action-panel">
       <button class="button button-action" id="action-get-primary-cart">Get Primary Cart</button>
     </div>
-    <script src="/dist/popup.bundle.js"></script>
   </body>
 </html>
