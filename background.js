@@ -18,7 +18,8 @@ chrome.runtime.onMessage.addListener(
 
             chrome.scripting.executeScript({
                 target: { tabId: targetTabId },
-                files: ["content-script.js"]
+                files: ["./dist/main.bundle.js"]
+                // files: ["content-script.js"]
             }).then(() => {
                 console.log(`executed content script to tab ${targetTabId}`);
                 executedContentScriptByTabId[targetTabId] = true;
