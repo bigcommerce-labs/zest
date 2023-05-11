@@ -1,5 +1,5 @@
 {
-  "name": "chrome-extension-bcapp-demo",
+  "name": "zest",
   "version": "1.0.0",
   "description": "A chrome extension as a bcapp toolkit, to help debug and test in browser.",
   "scripts": {
@@ -9,15 +9,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/bc-shawnwang/chrome-extension-bcapp-demo.git"
+    "url": "git+ssh://git@github.com:bigcommerce-labs/zest.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bc-shawnwang/chrome-extension-bcapp-demo/issues"
+    "url": "https://github.com/bigcommerce-labs/zest/issues"
   },
-  "homepage": "https://github.com/bc-shawnwang/chrome-extension-bcapp-demo#readme",
+  "homepage": "https://github.com/bigcommerce-labs/zest#readme",
   "devDependencies": {
+    "html-webpack-plugin": "^5.5.1",
     "webpack": "^5.81.0",
     "webpack-cli": "^5.0.2"
   },

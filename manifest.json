@@ -1,13 +1,13 @@
 {
-  "name": "Hello Extensions",
-  "description": "Base Level Extension",
+  "name": "zest",
+  "description": "Checkout SF Api testing extension",
   "version": "1.0",
   "manifest_version": 3,
   "background": {
     "service_worker": "background.js"
   },
   "action": {
-    "default_popup": "/popup/hello.html",
+    "default_popup": "/dist/index.html",
     "default_icon": "hello_extensions.png"
   },
   "host_permissions": [
