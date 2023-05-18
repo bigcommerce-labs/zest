@@ -1,25 +1,18 @@
 {
-  "name": "zest",
-  "description": "Checkout SF Api testing extension",
-  "version": "1.0",
-  "manifest_version": 3,
-  "background": {
-    "service_worker": "background.js"
-  },
-  "action": {
-    "default_popup": "/dist/index.html",
-    "default_icon": "hello_extensions.png"
-  },
-  "host_permissions": [
-    "<all_urls>"
-  ],
-  "permissions": [
-    "cookies",
-    "scripting",
-    "activeTab",
-    "webNavigation"
-  ],
-  "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'"
-  }
+    "name": "zest",
+    "description": "Checkout SF Api testing extension",
+    "version": "1.0",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "/dist/index.html",
+        "default_icon": "hello_extensions.png"
+    },
+    "host_permissions": ["<all_urls>"],
+    "permissions": ["cookies", "scripting", "activeTab", "webNavigation"],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
+    }
 }

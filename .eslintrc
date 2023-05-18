@@ -1,0 +1,15 @@
+{
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "ecmaFeatures": { }
+    },
+    "extends": [
+        "eslint:recommended",
+        "eslint-config-prettier"
+    ],
+    "rules": {},
+    "env": {
+        "browser": true
+    }
+}
