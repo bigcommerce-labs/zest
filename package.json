@@ -31,10 +31,5 @@
     },
     "dependencies": {
         "@pgrabovets/json-view": "^2.7.1"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "npm run validate"
-        }
     }
 }
