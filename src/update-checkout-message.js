@@ -1,17 +1,17 @@
 //TODO: Refactor to use async await.
 import { getCookie } from './get-cookie';
 
-function updateCheckoutMessage(cartId, message) {
+export function updateCheckoutMessage(cartId, message) {
     console.log(`update checkout <${cartId}> message to <${message}>`);
 
     fetch(`/api/storefront/checkouts/${cartId}`, {
-        "headers": {
+        headers: {
             'Content-Type': 'application/json',
             'x-xsrf-token': getCookie('XSRF-TOKEN'),
         },
-        "method": "PUT",
-        "body": `${message}`
+        method: 'PUT',
+        body: `${message}`,
     })
-    .then(response => response.json())
-    .then(json => console.log(json))
+        .then((response) => response.json())
+        .then((json) => console.log(json));
 }

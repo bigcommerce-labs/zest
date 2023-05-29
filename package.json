@@ -1,28 +1,35 @@
 {
-  "name": "zest",
-  "version": "1.0.0",
-  "description": "A chrome extension as a bcapp toolkit, to help debug and test in browser.",
-  "scripts": {
-    "clean": "rm -Rf ./dist",
-    "build": "npm run clean && webpack --mode=production",
-    "dev": "npm run clean && webpack --mode=development"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com:bigcommerce-labs/zest.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/bigcommerce-labs/zest/issues"
-  },
-  "homepage": "https://github.com/bigcommerce-labs/zest#readme",
-  "devDependencies": {
-    "html-webpack-plugin": "^5.5.1",
-    "webpack": "^5.81.0",
-    "webpack-cli": "^5.0.2"
-  },
-  "dependencies": {
-    "@pgrabovets/json-view": "^2.7.1"
-  }
+    "name": "zest",
+    "version": "1.0.0",
+    "description": "A chrome extension as a bcapp toolkit, to help debug and test in browser.",
+    "scripts": {
+        "clean": "rm -Rf ./dist",
+        "build": "npm run clean && webpack --mode=production",
+        "dev": "npm run clean && webpack --mode=development",
+        "lint": "eslint .",
+        "format": "prettier --ignore-path .eslintignore --write \"**/*.+(js|json)\"",
+        "validate": "npm run lint && npm run format"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com:bigcommerce-labs/zest.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/bigcommerce-labs/zest/issues"
+    },
+    "homepage": "https://github.com/bigcommerce-labs/zest#readme",
+    "devDependencies": {
+        "eslint": "^8.40.0",
+        "eslint-config-prettier": "^8.8.0",
+        "html-webpack-plugin": "^5.5.1",
+        "husky": "^8.0.3",
+        "prettier": "^2.8.8",
+        "webpack": "^5.81.0",
+        "webpack-cli": "^5.0.2"
+    },
+    "dependencies": {
+        "@pgrabovets/json-view": "^2.7.1"
+    }
 }
