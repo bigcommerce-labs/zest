@@ -1,1 +1,20 @@
-<html><header><link rel="stylesheet" href="/popup/popup.css"><title>BCApp Toolkit</title></header><body><h1>Zest</h1><div id="response-json" class="json-container"></div><div class="action-panel"><button class="button button-action" id="action-get-primary-cart">Get Primary Cart</button></div><script src="popup.bundle.js?36bf38f1d3dc78ddd000"></script></body></html>
+<html>
+  <header>
+    <link rel=stylesheet href="/popup/popup.css">
+    <title>BCApp Toolkit</title>
+  </header>
+  <body>
+    <h1> Zest </h1>
+
+    <div class="action-panel">
+      <form action="" id="create-cart-form" style="display: none;">
+        <label for="productId">First name:</label>
+        <input type="text" name="productId" class="product-id" /><br>
+        <button id="action-create-primary-cart" type="submit">Create Cart</button>
+      </form>
+      <div id="additional-actions" style="display: none;">
+        <div id="response-json" class="json-container"></div>
+      </div>
+    </div>
+  <script src="popup.bundle.js?4770228a8da7f2cf91fe"></script></body>
+</html>
