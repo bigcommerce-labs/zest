@@ -8,7 +8,7 @@
     },
     "action": {
         "default_popup": "/dist/index.html",
-        "default_icon": "hello_extensions.png"
+        "default_icon": "checkout.png"
     },
     "host_permissions": ["<all_urls>"],
     "permissions": ["cookies", "scripting", "activeTab", "webNavigation"],
