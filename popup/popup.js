@@ -5,19 +5,26 @@ import { actions } from '../constants';
 import './popup.css';
 
 const elementIds = {
-    getCartButton: 'action-get-primary-cart',
-    createCartForm: 'create-cart-form',
     additionalActionsPanel: 'additional-actions',
+    createCartForm: 'create-cart-form',
+    getCartButton: 'action-get-primary-cart',
+    loading: 'loading',
+};
+
+const classes = {
+    hidden: 'hidden',
 };
 
 const chromeTabsParams = { active: true, currentWindow: true };
 
 function renderJsonTree(data) {
     const additionalActionsPanel = document.getElementById(elementIds.additionalActionsPanel);
+
     document.querySelector('.json-container').innerHTML = '';
     const tree = jsonview.create(data);
     jsonview.render(tree, document.querySelector('.json-container'));
-    additionalActionsPanel.style.display = 'block';
+
+    additionalActionsPanel.classList.remove(classes.hidden);
 }
 
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -67,6 +74,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 return;
             }
+
+            const loadingContainer = document.getElementById(elementIds.loading);
+            loadingContainer.classList.add(classes.hidden);
 
             renderJsonTree(JSON.stringify(response[0]));
         });

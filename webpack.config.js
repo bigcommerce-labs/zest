@@ -16,20 +16,21 @@ const config = {
             {
                 test: /\.css$/i,
                 include: path.resolve(__dirname, 'popup'),
-                use: ['style-loader', 'css-loader', 'postcss-loader'],
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
             },
         ],
     },
     plugins: [
         new HtmlWebpackPlugin({
             hash: true,
-            title: 'BCApp Toolkit',
-            myPageHeader: 'Zest',
+            title: 'Zest',
+            myPageHeader: 'Checkout Toolkit',
             template: './popup/index.html',
             filename: './index.html',
             chunks: ['popup'],
             scriptLoading: 'blocking',
         }),
+        new MiniCssExtractPlugin(),
     ],
 };
 
