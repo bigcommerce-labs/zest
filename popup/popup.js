@@ -7,11 +7,13 @@ import './popup.css';
 const elementIds = {
     additionalActionsPanel: 'additional-actions',
     createCartForm: 'create-cart-form',
+    createCartButton: 'action-create-primary-cart',
     getCartButton: 'action-get-primary-cart',
     loading: 'loading',
 };
 
 const classes = {
+    buttonSpinner: 'button-spinner',
     hidden: 'hidden',
 };
 
@@ -23,8 +25,14 @@ function renderJsonTree(data) {
     document.querySelector('.json-container').innerHTML = '';
     const tree = jsonview.create(data);
     jsonview.render(tree, document.querySelector('.json-container'));
+    jsonview.expand(tree);
 
     additionalActionsPanel.classList.remove(classes.hidden);
+}
+
+function removeLoadingContainer() {
+    const loadingContainer = document.getElementById(elementIds.loading);
+    loadingContainer.classList.add(classes.hidden);
 }
 
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -41,6 +49,10 @@ document.addEventListener('DOMContentLoaded', function () {
     createCartForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
+        const createCartButton = document.getElementById(elementIds.createCartButton);
+        const buttonSpinner = createCartButton.getElementsByClassName(classes.buttonSpinner)[0];
+        const buttonSpan = createCartButton.getElementsByTagName('span')[0];
+
         const formData = new FormData(e.target);
         const { productId } = Object.fromEntries(formData);
         console.log('productId is: ', productId);
@@ -50,15 +62,20 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        buttonSpan.innerText = 'Creating cart...';
+        buttonSpinner.classList.remove(classes.hidden);
+
         chrome.tabs.query(chromeTabsParams, (tabs) => {
             console.log('tabs are', tabs);
 
             const { id } = tabs[0];
 
             chrome.tabs.sendMessage(id, { action: actions.createCart, productId }).then((response) => {
-                renderJsonTree(JSON.stringify(response));
+                createCartForm.classList.add(classes.hidden);
+                buttonSpan.innerText = 'Create cart';
+                buttonSpinner.classList.add(classes.hidden);
 
-                createCartForm.style.display = 'none';
+                renderJsonTree(JSON.stringify(response));
             });
         });
     });
@@ -70,14 +87,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         chrome.tabs.sendMessage(currentTab.id, { action: actions.getCart }).then((response) => {
             if (response.length === 0) {
-                createCartForm.style.display = 'block';
+                createCartForm.classList.remove(classes.hidden);
+                removeLoadingContainer();
 
                 return;
             }
 
-            const loadingContainer = document.getElementById(elementIds.loading);
-            loadingContainer.classList.add(classes.hidden);
-
+            removeLoadingContainer();
             renderJsonTree(JSON.stringify(response[0]));
         });
     });
