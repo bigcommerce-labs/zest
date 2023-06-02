@@ -2,6 +2,7 @@
 console.log('This is a popup!');
 import jsonview from '@pgrabovets/json-view';
 import { actions } from '../constants';
+import './popup.css';
 
 const elementIds = {
     getCartButton: 'action-get-primary-cart',
