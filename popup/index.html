@@ -1,18 +1,48 @@
 <html>
   <header>
-    <link rel=stylesheet href="/popup/popup.css">
     <title><%= htmlWebpackPlugin.options.title %></title>
   </header>
-  <body>
-    <h1> <%= htmlWebpackPlugin.options.myPageHeader %> </h1>
+  <body class="container flex flex-col p-4 bg-slate-200 font-mono text-base max-w-xs">
+    <h1 class="text-2xl mb-3 subpixel-antialiased font-semibold border-b-2 border-gray-700"> <%= htmlWebpackPlugin.options.myPageHeader %> </h1>
 
     <div class="action-panel">
-      <form action="" id="create-cart-form" style="display: none;">
-        <label for="productId">First name:</label>
-        <input type="text" name="productId" class="product-id" /><br>
-        <button id="action-create-primary-cart" type="submit">Create Cart</button>
+      <!-- Initial Loading spinner -->
+      <div class="text-2xl text-gray-400 inline-flex mt-5 mb-4 mx-4" id="loading">
+        <span class="">Loading...</span>
+        <svg class="animate-spin -mr-1 ml-3 h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25 stroke-gray-400" cx="12" cy="12" r="10" stroke-width="4"></circle>
+          <path class="opacity-75 fill-gray-400" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+      </div>
+
+      <!-- Create cart form -->
+      <form action="" class="w-full max-w-sm hidden" id="create-cart-form">
+        <div class="md:flex md:items-center mb-2">
+          <div class="md:w-1/3">
+            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="productId">Product id:</label>
+          </div>
+          <div class="md:w-2/3">
+            <input
+              class="g-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-900"
+              placeholder="Enter product id"
+              type="text"
+              name="productId" />
+            </div>
+        </div>
+        <button
+          id="action-create-primary-cart"
+          class="w-full inline-flex justify-center items-center font-semibold bg-blue-900 hover:bg-blue-800 text-white py-1 px-3 rounded"
+          type="submit">
+          <span>Create Cart</span>
+          <svg class="animate-spin -mr-1 ml-3 h-5 w-5 text-white hidden button-spinner" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        </button>
       </form>
-      <div id="additional-actions" style="display: none;">
+
+      <!-- Additional actions + json container -->
+      <div id="additional-actions" class="hidden">
         <div id="response-json" class="json-container"></div>
       </div>
     </div>
