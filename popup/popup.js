@@ -8,6 +8,7 @@ const elementIds = {
     additionalActionsPanel: 'additional-actions',
     createCartForm: 'create-cart-form',
     createCartButton: 'action-create-primary-cart',
+    deleteCartButton: 'action-delete-primary-cart',
     getCartButton: 'action-get-primary-cart',
     loading: 'loading',
 };
@@ -17,6 +18,9 @@ const classes = {
     hidden: 'hidden',
 };
 
+// TODO: Implement a way to build a cart singleton
+let inMemoryCart = {};
+
 const chromeTabsParams = { active: true, currentWindow: true };
 
 function renderJsonTree(data) {
@@ -24,6 +28,8 @@ function renderJsonTree(data) {
 
     document.querySelector('.json-container').innerHTML = '';
     const tree = jsonview.create(data);
+    // set in memory cart
+    inMemoryCart.cartId = JSON.parse(data).id;
     jsonview.render(tree, document.querySelector('.json-container'));
     jsonview.expand(tree);
 
@@ -45,6 +51,10 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 
 document.addEventListener('DOMContentLoaded', function () {
     const createCartForm = document.getElementById(elementIds.createCartForm);
+    const deleteCartButton = document.getElementById(elementIds.deleteCartButton);
+
+    console.log('aaaa');
+    console.log('aaaa', deleteCartButton);
 
     createCartForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -77,6 +87,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 renderJsonTree(JSON.stringify(response));
             });
+        });
+    });
+
+    deleteCartButton.addEventListener('click', (e) => {
+        console.log(e);
+
+        const buttonSpinner = deleteCartButton.getElementsByClassName(classes.buttonSpinner)[0];
+        const buttonSpan = deleteCartButton.getElementsByTagName('span')[0];
+        buttonSpan.innerText = 'Deleting cart...';
+        buttonSpinner.classList.remove(classes.hidden);
+
+        chrome.tabs.query(chromeTabsParams, (tabs) => {
+            const { id } = tabs[0];
+
+            chrome.tabs
+                .sendMessage(id, { action: actions.deleteCart, cartId: inMemoryCart.cartId })
+                .then((response) => {
+                    createCartForm.classList.remove(classes.hidden);
+                    createCartForm.reset();
+                    buttonSpan.innerText = 'Delete cart';
+                    buttonSpinner.classList.add(classes.hidden);
+
+                    console.log('delete cart response', response);
+
+                    // renderJsonTree(JSON.stringify(response));
+                    const additionalActionsPanel = document.getElementById(elementIds.additionalActionsPanel);
+
+                    document.querySelector('.json-container').innerHTML = '';
+                    // reset in memory cart
+                    inMemoryCart = {};
+                    additionalActionsPanel.classList.add(classes.hidden);
+                });
         });
     });
 
